@@ -37,6 +37,14 @@ button {
   border-radius: 10px;
   cursor: pointer;
 }
+.wrapper-lang-theme {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  select {
+    padding: 0.538rem;
+  }
+}
 input, select, textarea {
   background: var(--card);
   color: var(--text);
@@ -50,6 +58,9 @@ input, select, textarea {
   border-radius: 16px;
   padding: 1rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+label {
+  input, select { width: 100%; margin-top: 0.5rem;}
 }
 .table { width: 100%; border-collapse: collapse; }
 .table th, .table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }

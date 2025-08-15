@@ -14,7 +14,9 @@
     "next": "Next",
     "loading": "Loading...",
     "loadErr": "Error loading profile",
-    "loadingErr": "Error loading profile"
+    "loadingErr": "Error loading profile",
+    "light": "Light",
+    "dark": "Dark"
   },
   "auth": {
     "login": "Login",
@@ -41,7 +43,16 @@
     },
     "all": "All",
     "profit": "Profit",
-    "cost": "Cost"
+    "cost": "Cost",
+    "change": "Change",
+    "modalTitleOperation": {
+      "new": "New operation",
+      "edit": "Edit operation"
+    },
+    "modalTitleCategory": {
+      "new": "New category",
+      "edit": "Edit category"
+    }
   },
   "pages": {
     "login": {
@@ -72,7 +83,16 @@
     "date": "Date",
     "category": "Category",
     "desc": "Description",
-    "actions": "Actions"
+    "actions": "Actions",
+    "profit": "Profit",
+    "cost": "Cost",
+    "page": "Page",
+    "button": {
+      "prev": "Prev",
+      "next": "Next"
+    },
+    "createdAt": "Created at",
+    "updatedAt": "Updated at"
   },
   "errors": {
     "ERR_INCORRECT_EMAIL_OR_PASSWORD": "Incorrect email or password",

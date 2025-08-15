@@ -57,10 +57,10 @@ export default function OperationsPage() {
         </div>
       </div>
 
-      {isError ? <p>Failed to load</p> : isLoading ? <p>Loading...</p> : (
+      {isError ? <p>Failed to load</p> : isLoading ? <p>{t('actions.loading')}</p> : (
         <table className="table">
           <thead>
-            <tr><th>{t('table.name')}</th><th>{t('table.desc')}</th><th>{t('table.type')}</th><th>Amount</th><th>{t('forms.date')}</th><th>{t('table.category')}</th><th style={{width:220}}>{t('table.actions')}</th></tr>
+            <tr><th>{t('table.name')}</th><th>{t('table.desc')}</th><th>{t('table.type')}</th><th>{t('forms.amount')}</th><th>{t('forms.date')}</th><th>{t('table.category')}</th><th style={{width:220}}>{t('table.actions')}</th></tr>
           </thead>
           <tbody>
             {data?.data.map(op => (
@@ -71,9 +71,11 @@ export default function OperationsPage() {
                 <td>{op.amount.toLocaleString('ru-RU',{minimumFractionDigits:2, maximumFractionDigits:2})}</td>
                 <td>{op.date?.slice(0,10)}</td>
                 <td>{op.category?.name}</td>
-                <td className="flex">
-                  <button onClick={() => { setEdit({ id: op.id, name: op.name, desc: op.desc, amount: op.amount, date: op.date.slice(0,10), type: op.type, categoryId: op.category?.id }); setOpen(true) }}>{t('actions.edit')}</button>
-                  <button onClick={() => deleteOperation(op.id)} style={{background:'var(--danger)'}}>{t('actions.delete')}</button>
+                <td>
+                  <div className="flex">
+                    <button onClick={() => { setEdit({ id: op.id, name: op.name, desc: op.desc, amount: op.amount, date: op.date.slice(0,10), type: op.type, categoryId: op.category?.id }); setOpen(true) }}>{t('actions.edit')}</button>
+                    <button onClick={() => deleteOperation(op.id)} style={{background:'var(--danger)'}}>{t('actions.delete')}</button>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -82,13 +84,13 @@ export default function OperationsPage() {
       )}
 
       <div className="flex" style={{justifyContent:'space-between', marginTop:'0.75rem'}}>
-        <button disabled={page<=1} onClick={() => setPage(p=>p-1)}>Prev</button>
-        <span>Page {data?.pagination?.pageNumber ?? page} / {data ? Math.ceil(data.pagination.total / data.pagination.pageSize) : pages}</span>
-        <button disabled={data ? page >= Math.ceil(data.pagination.total / data.pagination.pageSize) : true} onClick={() => setPage(p=>p+1)}>Next</button>
+        <button disabled={page<=1} onClick={() => setPage(p=>p-1)}>{t('table.button.prev')}</button>
+        <span>{t('table.page')} {data?.pagination?.pageNumber ?? page} / {data ? Math.ceil(data.pagination.total / data.pagination.pageSize) : pages}</span>
+        <button disabled={data ? page >= Math.ceil(data.pagination.total / data.pagination.pageSize) : true} onClick={() => setPage(p=>p+1)}>{t('table.button.next')}</button>
       </div>
 
-      <Modal isOpen={open} onClose={() => setOpen(false)} title={edit?.id ? 'Edit operation' : 'New operation'}>
-        <div className="flex" style={{flexDirection:'column', gap:'0.5rem'}}>
+      <Modal isOpen={open} onClose={() => setOpen(false)} title={edit?.id ? t('forms.modalTitleOperation.edit') : t('forms.modalTitleOperation.new')}>
+        <div className="flex" style={{flexDirection:'column', alignItems: 'stretch', gap:'0.5rem'}}>
           <label>{t('table.name')} <input value={edit?.name ?? ''} onChange={e => setEdit((s:any)=>({...s,name:e.target.value}))}/></label>
           <label>{t('forms.desc')} <input value={edit?.desc ?? ''} onChange={e => setEdit((s:any)=>({...s,desc:e.target.value}))}/></label>
           <label>{t('forms.amount')} <input type="number" step="0.01" value={edit?.amount ?? 0} onChange={e => setEdit((s:any)=>({...s,amount: Number(e.target.value)}))}/></label>

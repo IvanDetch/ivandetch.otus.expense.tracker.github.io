@@ -27,8 +27,10 @@ export default function App() {
           <Link to="/profile">{t('nav.profile')}</Link>
         </nav>
         <div className="spacer" />
-        <LangSwitcher />
-        <ThemeToggle />
+        <div className="wrapper-lang-theme">
+          <LangSwitcher />
+          <ThemeToggle />
+        </div>
       </header>
       <main className="app__main">
         <Routes>

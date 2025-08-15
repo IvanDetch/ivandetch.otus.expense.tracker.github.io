@@ -14,7 +14,9 @@
     "next": "Вперед",
     "loading": "Загрузка...",
     "loadErr": "Ошибка загрузки профиля",
-    "loadingErr": "Ошибка загрузки профиля"
+    "loadingErr": "Ошибка загрузки профиля",
+    "light": "Светлая",
+    "dark": "Тёмная"
   },
   "auth": {
     "login": "Вход",
@@ -36,12 +38,21 @@
     "category": "Категория",
     "required": "Обязательное поле",
     "sorting": { 
-      "desc": "Desc",
-      "asc": "Asc"
+      "desc": "По убыванию",
+      "asc": "По возрастанию"
     },
     "all": "Все",
     "profit": "Прибыль",
-    "cost": "Затраты"
+    "cost": "Затраты",
+    "change": "Изменить",
+    "modalTitleOperation": {
+      "new": "Новая операция",
+      "edit": "Редактировать операцию"
+    },
+    "modalTitleCategory": {
+      "new": "Новая категория",
+      "edit": "Редактировать категорию"
+    }
   },
   "pages": {
     "login": {
@@ -72,7 +83,14 @@
     "date": "Дата",
     "category": "Категория",
     "desc": "Описание",
-    "actions": "Действия"
+    "actions": "Действия",
+    "page": "Страница",
+    "button": {
+      "prev": "Предыдущая",
+      "next": "Следующая"
+    },
+    "createdAt": "Создан",
+    "updatedAt": "Обновлен"
   },
   "errors": {
     "ERR_INCORRECT_EMAIL_OR_PASSWORD": "Неверный email или пароль",

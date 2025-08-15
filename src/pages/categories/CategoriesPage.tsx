@@ -22,16 +22,18 @@ export default function CategoriesPage() {
         <h2>{t('pages.categories.title')}</h2>
         <button onClick={() => { setEdit({ name: '' }); setOpen(true) }}>{t('pages.categories.new')}</button>
       </div>
-      {isLoading ? <p>Loading...</p> : (
+      {isLoading ? <p>{t('actions.loading')}</p> : (
         <table className="table">
-          <thead><tr><th>Name</th><th style={{width:200}}>Actions</th></tr></thead>
+          <thead><tr><th>{t('table.name')}</th><th style={{width:200}}>{t('table.actions')}</th></tr></thead>
           <tbody>
             {data?.data.map(c => (
               <tr key={c.id}>
                 <td>{c.name}</td>
-                <td className="flex">
-                  <button onClick={() => { setEdit({ id: c.id, name: c.name }); setOpen(true) }}>Edit</button>
-                  <button onClick={() => deleteCategory(c.id)} style={{background:'var(--danger)'}}>Delete</button>
+                <td>
+                  <div className="flex">
+                  <button onClick={() => { setEdit({ id: c.id, name: c.name }); setOpen(true) }}>{t('actions.edit')}</button>
+                  <button onClick={() => deleteCategory(c.id)} style={{background:'var(--danger)'}}>{t('actions.delete')}</button>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -39,21 +41,21 @@ export default function CategoriesPage() {
         </table>
       )}
       <div className="flex" style={{justifyContent:'space-between', marginTop: '0.75rem'}}>
-        <button disabled={page<=1} onClick={() => setPage(p=>p-1)}>Prev</button>
-        <span>Page {data?.pagination?.pageNumber ?? page} / {data ? Math.ceil(data.pagination.total / data.pagination.pageSize) : 1}</span>
-        <button disabled={data ? page >= Math.ceil(data.pagination.total / data.pagination.pageSize) : true} onClick={() => setPage(p=>p+1)}>Next</button>
+        <button disabled={page<=1} onClick={() => setPage(p=>p-1)}>{t('table.button.prev')}</button>
+        <span>{t('table.page')} {data?.pagination?.pageNumber ?? page} / {data ? Math.ceil(data.pagination.total / data.pagination.pageSize) : 1}</span>
+        <button disabled={data ? page >= Math.ceil(data.pagination.total / data.pagination.pageSize) : true} onClick={() => setPage(p=>p+1)}>{t('table.button.next')}</button>
       </div>
 
-      <Modal isOpen={open} onClose={() => setOpen(false)} title={edit.id ? 'Edit category' : 'New category'}>
+      <Modal isOpen={open} onClose={() => setOpen(false)} title={edit.id ? t('forms.modalTitleCategory.edit') : t('forms.modalTitleCategory.new')}>
         <div className="flex" style={{flexDirection:'column'}}>
-          <label>Name <input value={edit.name} onChange={e => setEdit(prev => ({...prev, name: e.target.value}))} /></label>
+          <label>{t('table.name')} <input value={edit.name} onChange={e => setEdit(prev => ({...prev, name: e.target.value}))} /></label>
           <div className="flex" style={{justifyContent:'flex-end'}}>
-            <button onClick={() => setOpen(false)} style={{background:'transparent', color:'var(--text)'}}>Cancel</button>
+            <button onClick={() => setOpen(false)} style={{background:'transparent', color:'var(--text)'}}>{t('actions.cancel')}</button>
             <button disabled={!edit.name?.trim()} onClick={async () => {
               if (edit.id) await updateCategory({ id: edit.id, name: edit.name })
               else await createCategory({ name: edit.name })
               setOpen(false)
-            }}>Save</button>
+            }}>{t('actions.save')}</button>
           </div>
         </div>
       </Modal>
