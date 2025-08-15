@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "operations": "Operations",
+    "categories": "Categories",
+    "profile": "Profile"
+  },
+  "actions": {
+    "create": "Create",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "prev": "Prev",
+    "next": "Next",
+    "loading": "Loading...",
+    "loadErr": "Error loading profile",
+    "loadingErr": "Error loading profile"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "signOut": "Sign out"
+  },
+  "forms": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "oldPassword": "Old password",
+    "newPassword": "New password",
+    "desc": "Description",
+    "amount": "Amount",
+    "date": "Date",
+    "type": "Type",
+    "category": "Category",
+    "required": "Required field",
+    "sorting": { 
+      "desc": "Desc",
+      "asc": "Asc"
+    },
+    "all": "All",
+    "profit": "Profit",
+    "cost": "Cost"
+  },
+  "pages": {
+    "login": {
+      "title": "Login",
+      "orRegister": "Or register"
+    },
+    "register": {
+      "title": "Register",
+      "hasAccount": "Already have an account?"
+    },
+    "operations": {
+      "title": "Operations",
+      "new": "+ New"
+    },
+    "categories": {
+      "title": "Categories",
+      "new": "+ New"
+    },
+    "profile": {
+      "title": "Profile",
+      "changePassword": "Change password"
+    }
+  },
+  "table": {
+    "name": "Name",
+    "type": "Type",
+    "amount": "Amount",
+    "date": "Date",
+    "category": "Category",
+    "desc": "Description",
+    "actions": "Actions"
+  },
+  "errors": {
+    "ERR_INCORRECT_EMAIL_OR_PASSWORD": "Incorrect email or password",
+    "ERR_ACCOUNT_ALREADY_EXIST": "Account already exists",
+    "ERR_FIELD_REQUIRED": "Field is required",
+    "ERR_INCORRECT_PASSWORD": "Incorrect current password",
+    "ERR_INVALID_PASSWORD": "Password does not match policy",
+    "ERR_NOT_VALID": "Invalid id",
+    "ERR_AUTH": "Authorization required",
+    "ERR_NO_FILES": "No files uploaded",
+    "ERR_NOT_ALLOWED": "Operation not allowed",
+    "ERR_NOT_FOUND": "Entity not found",
+    "ERR_VALIDATION_ERROR": "Validation error",
+    "ERR_INVALID_QUERY_PARAMS": "Invalid query params",
+    "ERR_INTERNAL_SERVER": "Server error"
+  }
+}

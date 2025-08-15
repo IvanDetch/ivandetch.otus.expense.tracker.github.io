@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "operations": "Операции",
+    "categories": "Категории",
+    "profile": "Профиль"
+  },
+  "actions": {
+    "create": "Создать",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "edit": "Изменить",
+    "delete": "Удалить",
+    "prev": "Назад",
+    "next": "Вперед",
+    "loading": "Загрузка...",
+    "loadErr": "Ошибка загрузки профиля",
+    "loadingErr": "Ошибка загрузки профиля"
+  },
+  "auth": {
+    "login": "Вход",
+    "register": "Регистрация",
+    "signOut": "Выйти"
+  },
+  "forms": {
+    "email": "E-mail",
+    "password": "Пароль",
+    "name": "Имя",
+    "signIn": "Войти",
+    "signUp": "Зарегистрироваться",
+    "oldPassword": "Старый пароль",
+    "newPassword": "Новый пароль",
+    "desc": "Описание",
+    "amount": "Сумма",
+    "date": "Дата",
+    "type": "Тип",
+    "category": "Категория",
+    "required": "Обязательное поле",
+    "sorting": { 
+      "desc": "Desc",
+      "asc": "Asc"
+    },
+    "all": "Все",
+    "profit": "Прибыль",
+    "cost": "Затраты"
+  },
+  "pages": {
+    "login": {
+      "title": "Вход",
+      "orRegister": "Или зарегистрируйтесь"
+    },
+    "register": {
+      "title": "Регистрация",
+      "hasAccount": "Уже есть аккаунт?"
+    },
+    "operations": {
+      "title": "Операции",
+      "new": "+ Добавить"
+    },
+    "categories": {
+      "title": "Категории",
+      "new": "+ Добавить"
+    },
+    "profile": {
+      "title": "Профиль",
+      "changePassword": "Сменить пароль"
+    }
+  },
+  "table": {
+    "name": "Название",
+    "type": "Тип",
+    "amount": "Сумма",
+    "date": "Дата",
+    "category": "Категория",
+    "desc": "Описание",
+    "actions": "Действия"
+  },
+  "errors": {
+    "ERR_INCORRECT_EMAIL_OR_PASSWORD": "Неверный email или пароль",
+    "ERR_ACCOUNT_ALREADY_EXIST": "Аккаунт уже существует",
+    "ERR_FIELD_REQUIRED": "Обязательное поле",
+    "ERR_INCORRECT_PASSWORD": "Неверный текущий пароль",
+    "ERR_INVALID_PASSWORD": "Пароль не соответствует требованиям",
+    "ERR_NOT_VALID": "Некорректный id",
+    "ERR_AUTH": "Требуется авторизация",
+    "ERR_NO_FILES": "Файлы не загружены",
+    "ERR_NOT_ALLOWED": "Операция не разрешена",
+    "ERR_NOT_FOUND": "Сущность не найдена",
+    "ERR_VALIDATION_ERROR": "Ошибка валидации",
+    "ERR_INVALID_QUERY_PARAMS": "Некорректные параметры запроса",
+    "ERR_INTERNAL_SERVER": "Ошибка сервера"
+  }
+}
