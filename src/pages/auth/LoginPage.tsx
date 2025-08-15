@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../store/hooks'
 import { setToken } from '../../store/slices/authSlice'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppTranslation } from '../../app/providers/i18n/useAppTranslation'
-import { extractServerError } from '../../shared/lib/errors'
+import { formatServerError } from '../../shared/lib/errors'
 
 const schema = z.object({
   email: z.string().email(),
@@ -28,7 +28,7 @@ export default function LoginPage() {
       const res = await signin(data).unwrap()
       dispatch(setToken(res.token))
       navigate('/operations')
-    } catch (e: any) { setServerError(extractServerError(e, t)) }
+    } catch (e: any) { setServerError(formatServerError(e, t)) }
   }
 
   return (

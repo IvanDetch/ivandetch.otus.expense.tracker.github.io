@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../store/hooks'
 import { setToken } from '../../store/slices/authSlice'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppTranslation } from '../../app/providers/i18n/useAppTranslation'
-import { extractServerError, extractFieldError } from '../../shared/lib/errors'
+import { formatServerError, extractFieldError } from '../../shared/lib/errors'
 
 const schema = z.object({
   name: z.string().min(1, 'Required'),
@@ -29,7 +29,7 @@ export default function RegisterPage() {
       const res = await signup(data).unwrap()
       dispatch(setToken(res.token))
       navigate('/operations')
-    } catch (e: any) { setServerError(extractServerError(e, t)) }
+    } catch (e: any) { setServerError(formatServerError(e, t)) }
   }
 
   return (

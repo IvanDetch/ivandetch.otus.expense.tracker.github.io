@@ -1,16 +1,32 @@
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import type { TFunction } from 'i18next'
 
-export function extractServerError(error: unknown): { code?: string; message?: string } | null {
-  const e = error as FetchBaseQueryError & { data?: any }
-  const data: any = (e && 'data' in e) ? (e as any).data : null
-  const first = data?.errors?.[0] ?? null
-  return first ? { code: first.code, message: first.message } : (data?.error ? { message: data.error } : null)
+type ServerFieldError = { code?: string; message?: string; field?: string }
+type ServerErrorShape = {
+  status?: number
+  data?: { errors?: Array<{ code?: string; message?: string; fieldName?: string }> }
 }
 
-export function extractFieldError(e: any): { field?: string; message?: string } | null {
-  const err = e?.data?.errors?.[0]
-  if (!err) return null
-  const field = err?.fieldName
-  const message = err?.message
-  return { field, message }
+export function extractServerError(e: unknown): ServerFieldError | null {
+  // RTK Query error shape
+  const err = e as ServerErrorShape
+  const first = err?.data?.errors?.[0]
+  if (first) return { code: first.code, message: first.message, field: first.fieldName }
+  return null
+}
+
+export function formatServerError(e: unknown, t: TFunction): string {
+  const se = extractServerError(e)
+  if (!se) return t('errors.ERR_INTERNAL_SERVER')
+  const codeKey = se.code ? `errors.${se.code}` : null
+  if (codeKey) {
+    const tr = t(codeKey)
+    if (tr && tr !== codeKey) return tr
+  }
+  return se.message || t('errors.ERR_INTERNAL_SERVER')
+}
+
+export function extractFieldError(e: unknown): ServerFieldError | null {
+  const se = extractServerError(e)
+  if (!se?.field) return null
+  return se
 }

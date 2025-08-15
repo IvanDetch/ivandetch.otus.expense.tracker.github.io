@@ -3,7 +3,7 @@ import { useProfileQuery, useUpdateProfileMutation, useChangePasswordMutation } 
 import { useAppDispatch } from '../../store/hooks'
 import { setToken } from '../../store/slices/authSlice'
 import { useAppTranslation } from '../../app/providers/i18n/useAppTranslation'
-import { extractServerError } from '../../shared/lib/errors'
+import { formatServerError } from '../../shared/lib/errors'
 
 export default function ProfilePage() {
   const { t } = useAppTranslation()
@@ -37,7 +37,7 @@ export default function ProfilePage() {
       <div className="flex">
         <input type="password" placeholder={t("forms.oldPassword")} value={oldPass} onChange={e => setOldPass(e.target.value)} />
         <input type="password" placeholder={t("forms.newPassword")} value={newPass} onChange={e => setNewPass(e.target.value)} />
-        <button onClick={async () => { try { await changePassword({ password: oldPass, newPassword: newPass }).unwrap() } catch(e:any){ setServerError(extractServerError(e, t)) } }} disabled={isChanging}>{t("forms.change")}</button>{serverError && <small style={{color:'var(--danger)'}}>{serverError}</small>}
+        <button onClick={async () => { try { await changePassword({ password: oldPass, newPassword: newPass }).unwrap() } catch(e:any){ setServerError(formatServerError(e, t)) } }} disabled={isChanging}>{t("forms.change")}</button>{serverError && <small style={{color:'var(--danger)'}}>{serverError}</small>}
       </div>
     </div>
   )

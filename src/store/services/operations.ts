@@ -1,6 +1,7 @@
 import { api } from './api'
 import { buildParams } from '../../shared/lib/params'
 import type { Category } from './categories'
+import type { Paged, Sorting } from '../../types/api'
 
 export type OperationType = 'Profit' | 'Cost'
 export type Operation = {
@@ -16,7 +17,6 @@ export type Operation = {
 
 export type Pagination = { pageSize?: number; pageNumber?: number }
 export type DateRange = { gte?: string; lte?: string }
-export type Sorting = { type: 'ASC' | 'DESC'; field: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'date' }
 
 export type OperationFilters = {
   ids?: string[];
@@ -30,23 +30,31 @@ export type OperationFilters = {
   sorting?: Sorting;
 }
 
-type Paged<T> = { rows: T[]; page: number; pageSize: number; total: number }
-
 export const operationsApi = api.injectEndpoints({
   endpoints: (build) => ({
     getOperations: build.query<Paged<Operation>, OperationFilters | void>({
-      query: (filters) => ({
-        url: '/operations',
-        method: 'GET',
-        params: buildParams(filters as any)
-      }),
+      query: (filters) => {
+        const params: Record<string, string> = {}
+        if (filters) {
+          if (filters.ids) params.ids = JSON.stringify(filters.ids)
+          if (filters.name) params.name = filters.name
+          if (filters.categoryIds) params.categoryIds = JSON.stringify(filters.categoryIds)
+          if (filters.type) params.type = filters.type
+          if (filters.pagination) params.pagination = JSON.stringify(filters.pagination)
+          if (filters.date) params.date = JSON.stringify(filters.date)
+          if (filters.createdAt) params.createdAt = JSON.stringify(filters.createdAt)
+          if (filters.updatedAt) params.updatedAt = JSON.stringify(filters.updatedAt)
+          if (filters.sorting) params.sorting = JSON.stringify(filters.sorting)
+        }
+        return { url: '/operations', method: 'GET', params }
+      },
       providesTags: (res) =>
         res
           ? [
-              ...res.data.map(o => ({ type: 'Operation' as const, id: o.id })),
-              { type: 'Operation' as const, id: 'LIST' }
+              ...(res.data ?? []).map((o: Operation) => ({ type: 'Operation' as const, id: o.id })),
+              { type: 'Operation' as const, id: 'LIST' },
             ]
-          : [{ type: 'Operation' as const, id: 'LIST' }]
+          : [{ type: 'Operation' as const, id: 'LIST' }],
     }),
     createOperation: build.mutation<any, { name: string; desc?: string; amount: number; date: string; type: OperationType; categoryId: string }>({
       query: (body) => ({ url: '/operations', method: 'POST', body }),
